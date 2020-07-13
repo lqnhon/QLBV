@@ -1,0 +1,154 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="QLBV.Models" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/bootstrap.min.css" />
+    <link href="<%=ResolveUrl("~")%>css/nstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/jquery.gritter.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/colorpicker.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/datepicker.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/uniform.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/select2.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/matrix-style.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/matrix-media.css" />
+    <link rel="stylesheet" href="<%=ResolveUrl("~")%>css/bootstrap-wysihtml5.css" />
+
+    <link href="<%=ResolveUrl("~")%>font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <%Entities dt = new Entities(); %>
+    <% 
+        int id_user = 0;
+        if (Request.Cookies["user_id"] != null)
+        {
+            id_user = Convert.ToInt32(Request.Cookies["user_id"].Value);
+        }
+        int dangsoanthao = dt.tblContents.Where(v => v.iCreateBy == id_user && v.iStatus ==1).Count();
+        int dangchoduyet = dt.tblContents.Where(v => v.iCreateBy == id_user && v.iStatus == 2).Count();
+        int daduocduyet = dt.tblContents.Where(v => v.iCreateBy == id_user && v.iStatus == 3).Count();
+        int khongduocduyet = dt.tblContents.Where(v => v.iCreateBy == id_user && v.iStatus == 4).Count();
+        int duyettoanbo = dt.tblContents.Where(v =>v.iStatus == 2 && v.iDelete==0).Count();
+        int toanbo = dt.tblContents.Where(v => v.iStatus == 5 && v.iDelete == 0).Count();
+        int xuly = dt.tblContents.Where(v => v.iStatus == 3 && v.iDelete == 0).Count();
+        int nhanvien = dt.tblUsers.Where(v => v.iDelete == 0 && v.iActive == 1).Count()-1;
+    %>
+    <div id="header">
+        <h3><span style="color: #28b779; margin-left: 14PX;">HỆ THỐNG QUẢN LÝ TEAM NHẬT</span> </h3>
+    </div>
+
+    <div id="search">
+        <ul class="nav">
+            <li class="dropdown" style="width: 200px;"><a title="" href="#" style="height: 29px; background-color: #1f262d; margin-left: 5px;" data-toggle="dropdown" data-target="#profile-messagesss" class="dropdown-toggle"><i class="icon icon-user"></i><span style="margin: 3px"><%
+                                                                                                                                                                                                                                                                                            tblUser user = dt.tblUsers.Single(t => t.iD.Equals(id_user));
+                                                                                                                                                                                                                                                                                            Response.Write(user.cName);
+            %></span><span class="text">
+             
+            </span><b class="caret" style="float: right;"></b></a>
+                <ul class="dropdown-menu" style="margin-left: 6px; width: 202px;">
+                    <li><a href="<%=ResolveUrl("~")%>user/detail/<%=id_user %>"><i class="icon-user"></i>Thông tin tài khoản</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" onclick="ShowPopUp('','/user/changepass')"><i class="icon-repeat"></i>Đổi mật khẩu</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/home/logout"><i class="icon-key"></i>Đăng xuất</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--close-top-serch-->
+
+    <!--sidebar-menu-->
+
+    <div id="sidebar">
+        <a href="#" class="visible-phone"><i class="icon icon-home"></i> Trang chủ</a>
+        <ul>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/home/") != -1 ) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>home/index"><i class="icon icon-home"></i><span>Trang chủ</span></a> </li>
+            <%if (dt.tblUserGroups.Where(v => v.iUser == id_user && (v.iGroup == 1 || v.iGroup == 3)).Count() > 0)
+              { %>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/editor/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>editor/add"><i class="icon icon-plus"></i><span>Soạn thảo bài viết</span></a> </li>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/editing/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>editing/list"><i class="icon icon-edit"></i><span>Đang soạn thảo</span><span class="label label-important"><%=dangsoanthao %></span></a> </li>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/waitingforreview/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>waitingforreview/list"><i class="icon icon-repeat"></i><span>Đang chờ duyệt</span><span class="label label-important"><%=dangchoduyet %></span></a> </li>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/accepted/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>accepted/list"><i class="icon icon-ok"></i><span>Đã duyệt</span><span class="label label-important"><%=daduocduyet %></span></a> </li>
+            <li class=" <% if (Request.Url.AbsolutePath.IndexOf("/noaccept/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>noaccept/list"><i class="icon icon-thumbs-down"></i><span>Không được duyệt</span><span class="label label-important"><%=khongduocduyet %></span></a></li>
+            <%} %>
+            <%if(dt.tblUserGroups.Where(v => v.iUser == id_user && (v.iGroup == 1 || v.iGroup == 2)).Count() > 0){ %>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/accept/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>accept/list"><i class="icon icon-thumbs-up"></i><span>Duyệt bài viết</span><span class="label label-important"><%=duyettoanbo %></span></a></li>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/content/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>content/list"><i class="icon icon-align-justify"></i><span>Xử lý bài viết</span><span class="label label-important"><%=xuly %></span></a></li>
+             <li class="<% if (Request.Url.AbsolutePath.IndexOf("/active/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>active/list"><i class="icon icon-align-justify"></i><span>Quản lý bài viết</span><span class="label label-important"><%=toanbo %></span></a></li>
+            <li class="<% if (Request.Url.AbsolutePath.IndexOf("/employee/") != -1) { Response.Write("active"); } %>"><a href="<%=ResolveUrl("~") %>employee/list"><i class="icon icon-group"></i><span>Quản lý nhân viên</span><span class="label label-important"><%=nhanvien %></span></a></li>
+            <li class="submenu <% if (Request.Url.AbsolutePath.IndexOf("/user/") != -1) { Response.Write("active open"); } %> "><a href="#"><i class="icon icon-cog"></i><span>Quẩn trị hệ thống</span> <span class="label label-important">2</span></a>
+                <ul>
+                    <li><a href="<%=ResolveUrl("~") %>user/list">Tài khoản</a></li>
+                    <li><a href="<%=ResolveUrl("~") %>user/row">Phân quyền</a></li>
+                </ul>
+            </li>
+            <li <% if (Request.Url.AbsolutePath.IndexOf("/employee/") != -1) { Response.Write("active"); } %>"><a href="grid.html"><i class="icon icon-bar-chart"></i><span>Thống kê báo cáo</span></a></li>
+            <%} %>
+        </ul>
+    </div>
+    <div id="content">
+
+        <div class="container-fluid">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+        </div>
+    </div>
+    <!--Footer-part-->
+
+    <div class="row-fluid">
+        <%-- <div id="footer" class="span12">2017 &copy; PHẦN MỀM QUẢN LÝ PHÂN PHỐI. Bản quyền thuộc Công ty TNHH MTV <a href="http://techlife.vn">Techlife</a> </div>--%>
+        <div id="footer" class="span12">2017 &copy; HỆ THỐNG QUẢN LÝ TEAM NHẬT </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="<%=ResolveUrl("~")%>js/jquery.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.ui.custom.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/bootstrap.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/function.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/functions.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.dataTables.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.tables.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/bootstrap-colorpicker.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/bootstrap-datepicker.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.interface.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.popover.js"></script>
+
+    <script src="<%=ResolveUrl("~")%>js/jquery.toggle.buttons.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/masked.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.uniform.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/select2.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.form_common.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/wysihtml5-0.3.0.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.peity.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/bootstrap-wysihtml5.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.toggle.buttons.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/masked.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/jquery.uniform.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/select2.min.js"></script>
+    <script src="<%=ResolveUrl("~")%>js/matrix.js"></script>
+    <script src="<%=ResolveUrl("~")%>ckeditor/ckeditor.js"></script>
+    <script src="<%=ResolveUrl("~")%>ckfinder/ckfinder.js"></script>
+    <script>
+        $('.textarea_editor').wysihtml5();
+    </script>
+
+
+</body>
+</html>

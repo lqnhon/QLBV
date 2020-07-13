@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLBVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="tblComment">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cTopic" Type="nvarchar(max)" />
+          <Property Name="cContent" Type="nvarchar(max)" />
+          <Property Name="iContent" Type="int" />
+          <Property Name="iCreateBy" Type="int" />
+          <Property Name="dCreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblContent">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cTopic" Type="nvarchar(max)" />
+          <Property Name="cDescribe" Type="nvarchar(max)" />
+          <Property Name="cContent" Type="nvarchar(max)" />
+          <Property Name="cKey" Type="nvarchar(max)" />
+          <Property Name="iCreateBy" Type="int" />
+          <Property Name="dCreateDate" Type="datetime" />
+          <Property Name="iStatus" Type="int" />
+          <Property Name="iDelete" Type="int" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cCode" Type="int" />
+          <Property Name="cUserName" Type="nchar" MaxLength="150" />
+          <Property Name="cPassWord" Type="nchar" MaxLength="150" />
+          <Property Name="cName" Type="nvarchar" MaxLength="250" />
+          <Property Name="cPhone" Type="nchar" MaxLength="150" />
+          <Property Name="cAddress" Type="nvarchar" MaxLength="250" />
+          <Property Name="cLinkFace" Type="nvarchar" MaxLength="50" />
+          <Property Name="cCardBank" Type="nvarchar" MaxLength="250" />
+          <Property Name="iBank" Type="int" />
+          <Property Name="cNameFace" Type="nvarchar" MaxLength="250" />
+          <Property Name="iCreateBy" Type="int" />
+          <Property Name="dCeateDate" Type="datetime" />
+          <Property Name="iActive" Type="int" />
+          <Property Name="iDelete" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iUser" Type="int" />
+          <Property Name="iGroup" Type="int" />
+        </EntityType>
+        <Function Name="SP_List_Accept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Accept_ByEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="iEmployee" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Accepted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Active" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Active_ByEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="iEmployee" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Comment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="iContent" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Content" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Content_ByEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="iEmployee" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Editing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Employee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="key" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_List_Noaccept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_List_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="key" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_List_WaitingForReview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="cKey" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_Rpt_CountContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iUser" Type="int" Mode="In" />
+          <Parameter Name="iMonth" Type="int" Mode="In" />
+          <Parameter Name="iYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Rpt_Top" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iMonth" Type="int" Mode="In" />
+          <Parameter Name="iYear" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="QLBVModelStoreContainer">
+          <EntitySet Name="tblComment" EntityType="Self.tblComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContent" EntityType="Self.tblContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserGroup" EntityType="Self.tblUserGroup" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLBVModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="tblComment">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cTopic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="iContent" Type="Int32" />
+          <Property Name="iCreateBy" Type="Int32" />
+          <Property Name="dCreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblContent">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cTopic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cDescribe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="iCreateBy" Type="Int32" />
+          <Property Name="dCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="iStatus" Type="Int32" />
+          <Property Name="iDelete" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cCode" Type="Int32" />
+          <Property Name="cUserName" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="cPassWord" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="cName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cPhone" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="cAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cLinkFace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cCardBank" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="iBank" Type="Int32" />
+          <Property Name="cNameFace" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="iCreateBy" Type="Int32" />
+          <Property Name="dCeateDate" Type="DateTime" Precision="3" />
+          <Property Name="iActive" Type="Int32" />
+          <Property Name="iDelete" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblUserGroup">
+          <Key>
+            <PropertyRef Name="iD" />
+          </Key>
+          <Property Name="iD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iUser" Type="Int32" />
+          <Property Name="iGroup" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblComments" EntityType="Self.tblComment" />
+          <EntitySet Name="tblContents" EntityType="Self.tblContent" />
+          <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserGroups" EntityType="Self.tblUserGroup" />
+          <FunctionImport Name="SP_List_Accept" ReturnType="Collection(QLBVModel.SP_List_Accept_Result)">
+          <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Accepted" ReturnType="Collection(QLBVModel.SP_List_Accepted_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Comment" ReturnType="Collection(QLBVModel.SP_List_Comment_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="iContent" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Content" ReturnType="Collection(QLBVModel.SP_List_Content_Result)">
+          <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Editing" ReturnType="Collection(QLBVModel.SP_List_Editing_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Employee" ReturnType="Collection(QLBVModel.SP_List_Employee_Result)">
+          <Parameter Name="key" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Noaccept" ReturnType="Collection(QLBVModel.SP_List_Noaccept_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_User" ReturnType="Collection(QLBVModel.SP_List_User_Result)">
+          <Parameter Name="key" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_WaitingForReview" ReturnType="Collection(QLBVModel.SP_List_WaitingForReview_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Rpt_CountContent" ReturnType="Collection(QLBVModel.SP_Rpt_CountContent_Result)">
+            <Parameter Name="iUser" Mode="In" Type="Int32" />
+            <Parameter Name="iMonth" Mode="In" Type="Int32" />
+            <Parameter Name="iYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Rpt_Top" ReturnType="Collection(QLBVModel.SP_Rpt_Top_Result)">
+            <Parameter Name="iMonth" Mode="In" Type="Int32" />
+            <Parameter Name="iYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Active" ReturnType="Collection(QLBVModel.SP_List_Active_Result)">
+          <Parameter Name="cKey" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Accept_ByEmployee" ReturnType="Collection(QLBVModel.SP_List_Accept_ByEmployee_Result)">
+            <Parameter Name="cKey" Mode="In" Type="String" />
+            <Parameter Name="iEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Content_ByEmployee" ReturnType="Collection(QLBVModel.SP_List_Content_ByEmployee_Result)">
+            <Parameter Name="cKey" Mode="In" Type="String" />
+            <Parameter Name="iEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_List_Active_ByEmployee" ReturnType="Collection(QLBVModel.SP_List_Active_ByEmployee_Result)">
+            <Parameter Name="cKey" Mode="In" Type="String" />
+            <Parameter Name="iEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_List_Accept_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Accepted_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Comment_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cContent" Nullable="true" />
+          <Property Type="Int32" Name="iContent" Nullable="false" />
+          <Property Type="DateTime" Name="dCreateDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Content_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="Int32" Name="iStatus" Nullable="true" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Editing_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Employee_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cPhone" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cCardBank" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cLinkFace" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cNameFace" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cAddress" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Noaccept_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_List_User_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cUserName" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SP_List_WaitingForReview_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_Rpt_CountContent_Result">
+          <Property Type="Int32" Name="iCount" Nullable="true" />
+          <Property Type="Int32" Name="iStatus" Nullable="true" />
+          <Property Type="Int32" Name="iCreateBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Rpt_Top_Result">
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="iCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Active_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="Int32" Name="iStatus" Nullable="true" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="cName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Accept_ByEmployee_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Content_ByEmployee_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="Int32" Name="iStatus" Nullable="true" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SP_List_Active_ByEmployee_Result">
+          <Property Type="Int32" Name="iD" Nullable="false" />
+          <Property Type="Int32" Name="iStatus" Nullable="true" />
+          <Property Type="String" Name="cTopic" Nullable="true" />
+          <Property Type="String" Name="dCreateDate" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLBVModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="tblComments">
+            <EntityTypeMapping TypeName="QLBVModel.tblComment">
+              <MappingFragment StoreEntitySet="tblComment">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="cContent" ColumnName="cContent" />
+                <ScalarProperty Name="iContent" ColumnName="iContent" />
+                <ScalarProperty Name="iCreateBy" ColumnName="iCreateBy" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContents">
+            <EntityTypeMapping TypeName="QLBVModel.tblContent">
+              <MappingFragment StoreEntitySet="tblContent">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="cDescribe" ColumnName="cDescribe" />
+                <ScalarProperty Name="cContent" ColumnName="cContent" />
+                <ScalarProperty Name="cKey" ColumnName="cKey" />
+                <ScalarProperty Name="iCreateBy" ColumnName="iCreateBy" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="iDelete" ColumnName="iDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="QLBVModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="QLBVModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cCode" ColumnName="cCode" />
+                <ScalarProperty Name="cUserName" ColumnName="cUserName" />
+                <ScalarProperty Name="cPassWord" ColumnName="cPassWord" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cPhone" ColumnName="cPhone" />
+                <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+                <ScalarProperty Name="cLinkFace" ColumnName="cLinkFace" />
+                <ScalarProperty Name="cCardBank" ColumnName="cCardBank" />
+                <ScalarProperty Name="iBank" ColumnName="iBank" />
+                <ScalarProperty Name="cNameFace" ColumnName="cNameFace" />
+                <ScalarProperty Name="iCreateBy" ColumnName="iCreateBy" />
+                <ScalarProperty Name="dCeateDate" ColumnName="dCeateDate" />
+                <ScalarProperty Name="iActive" ColumnName="iActive" />
+                <ScalarProperty Name="iDelete" ColumnName="iDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGroups">
+            <EntityTypeMapping TypeName="QLBVModel.tblUserGroup">
+              <MappingFragment StoreEntitySet="tblUserGroup">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="iUser" ColumnName="iUser" />
+                <ScalarProperty Name="iGroup" ColumnName="iGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Accept" FunctionName="QLBVModel.Store.SP_List_Accept">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Accept_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Accepted" FunctionName="QLBVModel.Store.SP_List_Accepted">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Accepted_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Comment" FunctionName="QLBVModel.Store.SP_List_Comment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Comment_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cContent" ColumnName="cContent" />
+                <ScalarProperty Name="iContent" ColumnName="iContent" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Content" FunctionName="QLBVModel.Store.SP_List_Content">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Content_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Editing" FunctionName="QLBVModel.Store.SP_List_Editing">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Editing_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Employee" FunctionName="QLBVModel.Store.SP_List_Employee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Employee_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cPhone" ColumnName="cPhone" />
+                <ScalarProperty Name="cCardBank" ColumnName="cCardBank" />
+                <ScalarProperty Name="cLinkFace" ColumnName="cLinkFace" />
+                <ScalarProperty Name="cNameFace" ColumnName="cNameFace" />
+                <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Noaccept" FunctionName="QLBVModel.Store.SP_List_Noaccept">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Noaccept_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_User" FunctionName="QLBVModel.Store.SP_List_User">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_User_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cUserName" ColumnName="cUserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_WaitingForReview" FunctionName="QLBVModel.Store.SP_List_WaitingForReview">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_WaitingForReview_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Rpt_CountContent" FunctionName="QLBVModel.Store.SP_Rpt_CountContent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_Rpt_CountContent_Result">
+                <ScalarProperty Name="iCount" ColumnName="iCount" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="iCreateBy" ColumnName="iCreateBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Rpt_Top" FunctionName="QLBVModel.Store.SP_Rpt_Top">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_Rpt_Top_Result">
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="iCount" ColumnName="iCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Active" FunctionName="QLBVModel.Store.SP_List_Active">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Active_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Accept_ByEmployee" FunctionName="QLBVModel.Store.SP_List_Accept_ByEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Accept_ByEmployee_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Content_ByEmployee" FunctionName="QLBVModel.Store.SP_List_Content_ByEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Content_ByEmployee_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_List_Active_ByEmployee" FunctionName="QLBVModel.Store.SP_List_Active_ByEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLBVModel.SP_List_Active_ByEmployee_Result">
+                <ScalarProperty Name="iD" ColumnName="iD" />
+                <ScalarProperty Name="iStatus" ColumnName="iStatus" />
+                <ScalarProperty Name="cTopic" ColumnName="cTopic" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

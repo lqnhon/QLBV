@@ -1,0 +1,710 @@
+
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0 none;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+q:before, q:after {
+    content: "";
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+a img {
+    border: medium none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-size: 1em;
+}
+
+.cf:before, .cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+}
+
+.round {
+    border-radius: 0.3125em;
+}
+
+p {
+    color: #9498a1;
+    margin-bottom: 1.25em;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+    width: 100%;
+}
+
+.cb {
+    clear: both;
+}
+
+.half-size-column {
+    width: 48%;
+}
+
+div.stripe-separator {
+    background: url("login-admin/images/separator-bg.png") repeat-x scroll left center transparent;
+    display: block;
+    height: 0.562em;
+    margin: 1.25em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.625em;
+}
+
+ul.temporary-button-showcase {
+    list-style-type: none;
+}
+
+    ul.temporary-button-showcase li {
+        float: left;
+        margin-bottom: 1em;
+        width: 24%;
+    }
+
+body, form {
+    font-family: "Droid Sans",Helvetica,Arial,sans-serif;
+    line-height: 1.125em;
+}
+
+    p, .button, form input, ul#nav li ul, ul#tabs, div.side-menu ul li a, table, .information-box, .confirmation-box, .error-box, .warning-box, ol, .regular-ul, .custom-ul, blockquote, cite {
+        font-size: 0.75em;
+    }
+
+div.content-module-heading span {
+    font-size: 0.625em;
+}
+
+form p input[type="text"], form p input[type="password"], form p input[type="checkbox"], form p input[type="radio"] {
+    font-size: 1em;
+}
+
+h1 {
+    font-size: 1.125em;
+}
+
+h2 {
+    font-size: 0.875em;
+}
+
+h3 {
+    font-size: 0.75em;
+}
+
+h4 {
+    font-size: 0.685em;
+}
+
+h5 {
+    font-size: 0.625em;
+}
+
+a {
+    color: #2069b4;
+}
+
+    a:hover {
+        color: #2a2e36;
+    }
+
+
+
+.blue {
+    background-color: #2069b4;
+    color: white;
+}
+
+    .blue:hover {
+        background-color: #5081b3;
+        color: white;
+    }
+
+.default-width-input {
+    width: 20.833em;
+}
+
+.full-width-input {
+    width: 95%;
+}
+
+.full-width-textarea {
+    height: 12.5em;
+    width: 95%;
+}
+
+.page-full-width {
+    padding: 0 1.875em;
+}
+
+.page-limited {
+    margin: 0 auto;
+    width: 60em;
+}
+
+.button {
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding: 0.833em;
+    text-decoration: none;
+}
+
+.dark {
+    background-color: #3f4551;
+    color: white;
+}
+
+    .dark:hover {
+        background-color: #5d6677;
+        color: white;
+    }
+
+.text-upper {
+    text-transform: uppercase;
+}
+
+.small-button {
+    padding: 0.312em 1em;
+}
+
+.image-left {
+    background-position: 0.833em center;
+    padding-left: 3em;
+}
+
+.image-right {
+    background-position: right center;
+    padding-right: 3em;
+}
+
+.ic-left-arrow {
+    background-image: url("/login-admin/images/ic_left.png");
+}
+
+.ic-right-arrow {
+    background-image: url("/login-admin/images/ic_right.png");
+}
+
+.ic-print {
+    background-image: url("login-admin/images/ic_print.png");
+}
+
+.ic-cancel {
+    background-image: url("/login-admin/images/ic_cancel.png");
+}
+
+.ic-delete {
+    background-image: url("/login-admin/images/ic_delete.png");
+}
+
+.ic-add {
+    background-image: url("/login-admin/images/ic_add.png");
+}
+
+.ic-download {
+    background-image: url("/login-admin/images/ic_download.png");
+}
+
+.ic-edit {
+    background-image: url("/login-admin/images/ic_edit.png");
+}
+
+.ic-favorite {
+    background-image: url("/login-admin/images/ic_favorite.png");
+}
+
+.ic-lock {
+    background-image: url("/login-admin/images/ic_lock.png");
+}
+
+.ic-power {
+    background-image: url("/login-admin/images/ic_power.png");
+}
+
+.ic-refresh {
+    background-image: url("/login-admin/images/ic_refresh.png");
+}
+
+.ic-settings {
+    background-image: url("/login-admin/images/ic_settings.png");
+}
+
+.ic-upload {
+    background-image: url("/login-admin/images/ic_upload.png");
+}
+
+.ic-search {
+    background-image: url("/login-admin/images/ic_zoom.png");
+}
+
+.ic-table-edit {
+    background-image: url("/login-admin/images/table/actions-edit.png");
+}
+
+.ic-table-delete {
+    background-image: url("/login-admin/images/table/actions-delete.png");
+}
+
+.menu-email {
+    background-image: url("/login-admin/images/menu/menu-email.png");
+}
+
+    .menu-email:hover {
+        background-image: url("/login-admin/images/menu/menu-email-over.png");
+    }
+
+.menu-email-special {
+    background-image: url("/login-admin/images/menu/menu-email-special.png");
+    color: #7fcdff;
+}
+
+.menu-settings {
+    background-image: url("/login-admin/images/menu/menu-settings.png");
+}
+
+    .menu-settings:hover {
+        background-image: url("/login-admin/images/menu/menu-settings-over.png");
+    }
+
+.menu-logoff {
+    background-image: url("/login-admin/images/menu/menu-logoff.png");
+}
+
+    .menu-logoff:hover {
+        background-image: url("/login-admin/images/menu/menu-logoff-over.png");
+    }
+
+.menu-user {
+    background-image: url("/login-admin/images/menu/menu-user.png");
+}
+
+form label {
+    color: #2a2e36;
+    display: block;
+    margin: 0 0 0.3125em;
+    text-transform: uppercase;
+}
+
+    form label.alt-label {
+        text-transform: none;
+    }
+
+form input[type="text"], input[type="password"], textarea {
+    border: 1px solid #d9dbdd;
+    outline: medium none;
+    padding: 1em 0.625em;
+}
+
+    form input[type="text"]:hover, input[type="password"]:hover, textarea:hover, form input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+        border: 1px solid #bbbdbe;
+    }
+
+form input[type="checkbox"], form input[type="radio"] {
+    margin-right: 0.833em;
+}
+
+form input[type="submit"] {
+    background-position: right center;
+    background-repeat: no-repeat;
+    border: medium none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.833em 3em 0.833em 0.833em;
+    text-transform: uppercase;
+}
+
+form#search-form input {
+    border: medium none;
+    padding-right: 3em;
+}
+
+    form#search-form input:focus {
+        background-color: #5d6677;
+        color: white;
+    }
+
+form p em {
+    display: block;
+    margin-top: 0.833em;
+}
+
+form p.form-error, form p.form-error label {
+    color: #cf4425;
+}
+
+    form p.form-error em {
+        background: url("/login-admin/images/error.png") no-repeat scroll left center transparent;
+        padding-left: 2em;
+    }
+
+form input.error-input {
+    border: 1px solid #ff876f;
+}
+
+    form input.error-input:hover {
+        border: 1px solid #b03e27;
+    }
+
+:-moz-placeholder {
+    color: #858d9c;
+}
+
+.information-box, .confirmation-box, .error-box, .warning-box {
+    margin-bottom: 0.833em;
+    padding: 0.833em 0.833em 0.833em 3em;
+}
+
+.information-box {
+    background: url("/login-admin/images/information.png") no-repeat scroll 0.833em center #e5f5f9;
+    border: 1px solid #cae0e5;
+    color: #5a9bab;
+        margin-top: 20px;
+}
+
+.confirmation-box {
+    background: url("/login-admin/images/confirmation.png") no-repeat scroll 0.833em center #e7fae6;
+    border: 1px solid #b7cbb6;
+    color: #52964f;
+}
+
+.error-box {
+    background: url("/login-admin/images/error.png") no-repeat scroll 0.833em center #fde8e4;
+    border: 1px solid #e6bbb3;
+    color: #cf4425;
+}
+
+.warning-box {
+    background: url("/login-admin/images/warning.png") no-repeat scroll 0.833em center #fdf7e4;
+    border: 1px solid #e5d9b2;
+    color: #b28a0b;
+}
+
+ul#nav {
+    list-style-type: none;
+}
+
+    ul#nav > li {
+        float: left;
+        margin-right: 0.312em;
+        position: relative;
+    }
+
+    ul#nav li:first-child {
+        margin-left: 0;
+    }
+
+    ul#nav li:hover ul {
+        left: 0;
+    }
+
+    ul#nav li:hover a {
+        background-color: #5d6677;
+        color: white;
+    }
+
+    ul#nav li.v-sep {
+        border-right: 1px solid #3f4551;
+        margin-right: 0.625em;
+        padding-right: 0.625em;
+    }
+
+    ul#nav li ul {
+        left: -9999px;
+        list-style-type: none;
+        margin-top: -2px;
+        position: absolute;
+        z-index: 999;
+    }
+
+        ul#nav li ul li a {
+            background: url("/login-admin/images/menu-indicator.png") no-repeat scroll right center #5d6677;
+            border-top: 1px solid #6a7282;
+            color: white;
+            display: block;
+            padding: 0.833em 0 0.833em 3em;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        ul#nav li ul li:last-child a {
+            border-bottom-left-radius: 0.3125em;
+            border-bottom-right-radius: 0.3125em;
+        }
+
+        ul#nav li ul li a:hover {
+            background-color: #7a8497;
+        }
+
+div#top-bar {
+    background-color: #2a2e36;
+    padding: 0.625em 0;
+}
+
+div#header {
+    padding: 10px 0;
+    background: url(/login-admin/images/bg_banner_login.png);
+    border-bottom: 1px solid #ddd;
+}
+
+div#header-with-tabs {
+    padding: 1.25em 0 0;
+}
+
+div#login-intro {
+    background: url("/login-admin/images/login-icon.png") no-repeat scroll left center transparent;
+    padding: 0.312em 0 0.312em 3.125em;
+}
+
+    div#login-intro h1 {
+        margin: 0.312em 0 0;
+        text-transform: uppercase;
+    }
+
+    div#login-intro h5 {
+        color: #9498a1;
+    }
+
+a#company-branding img {
+    height: 58px;
+}
+
+a#company-branding-small img {
+    height: 30px;
+}
+
+ul#tabs {
+    list-style-type: none;
+}
+
+    ul#tabs li {
+        float: left;
+    }
+
+        ul#tabs li a {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            border-color: #eeefef #eeefef -moz-use-text-color;
+            border-image: none;
+            border-style: solid solid none;
+            border-width: 1px 1px medium;
+            color: #9498a1;
+            display: block;
+            margin: 0 0.416em -1px 0;
+            padding: 1.666em 0.833em;
+        }
+
+            ul#tabs li a:hover {
+                color: #2a2e36;
+            }
+
+            ul#tabs li a.dashboard-tab {
+                background: url("/login-admin/images/tab-dashboard.png") no-repeat scroll 0.833em center transparent;
+                padding-left: 3em;
+            }
+
+            ul#tabs li a.active-tab, ul#tabs li a.active-tab:hover {
+                background-color: #f8f9fa;
+                color: #2a2e36;
+                font-weight: bold;
+            }
+
+table {
+    margin-bottom: 1.25em;
+    width: 100%;
+}
+
+    table th {
+        background-color: #5d6677;
+        border-left: 1px solid #747c8a;
+        color: white;
+        padding: 1.25em 0 1.25em 1.25em;
+        text-transform: uppercase;
+    }
+
+    table tbody td {
+        border-bottom: 1px solid #f8f9fa;
+        border-left: 1px solid white;
+        padding: 0.833em 0 0.833em 1.25em;
+    }
+
+    table tbody tr:nth-child(2n+1) {
+        background-color: #f8f9fa;
+    }
+
+    table td:first-child, table th:first-child {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color -moz-use-text-color #f8f9fa;
+        border-image: none;
+        border-style: none none solid;
+        border-width: medium medium 1px;
+        padding: 0;
+        text-align: center;
+        width: 4em;
+    }
+
+    table td:last-child, table th:last-child {
+        padding: 0;
+        text-align: center;
+        width: 7em;
+    }
+
+    table td.table-footer {
+        border: medium none;
+        padding-top: 1.25em;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+a.table-actions-button {
+    background-position: center center;
+    display: inline-block;
+    height: 1.25em;
+    width: 1.25em;
+}
+
+ol li, .regular-ul li {
+    margin-left: 1.25em;
+}
+
+ol, .regular-ul, .custom-ul {
+    margin-bottom: 1.25em;
+}
+
+.custom-ul {
+    list-style-type: none;
+}
+
+    .custom-ul li {
+        background: url("/login-admin/images/menu-dark-indicator.png") no-repeat scroll left center transparent;
+        padding-left: 1.25em;
+    }
+
+div#content {
+    background: url("/login-admin/images/artwork-pattern.png") repeat-x scroll left bottom #f8f9fa;
+    border: 1px solid #eeefef;
+    padding: 1.875em 0;
+    height: 415px;
+}
+
+form#login-form {
+    margin: 0 auto;
+    width: 18.75em;
+    margin-top: 45px;
+}
+
+div.side-menu {
+    background: none repeat scroll 0 0 #3f4551;
+    border: 1px solid #eeefef;
+    margin-bottom: 1em;
+    width: 15%;
+}
+
+    div.side-menu h3 {
+        color: white;
+        font-weight: bold;
+        margin: 1.25em;
+        text-transform: uppercase;
+    }
+
+    div.side-menu ul {
+        list-style-type: none;
+    }
+
+        div.side-menu ul li a {
+            background: url("/login-admin/images/menu-dark-indicator.png") no-repeat scroll right center white;
+            border-top: 1px solid #f8f9fa;
+            display: block;
+            padding: 0.833em 1.25em;
+        }
+
+            div.side-menu ul li a:hover {
+                background-color: #f8f9fa;
+            }
+
+div.side-content {
+    width: 83%;
+}
+
+div.content-module {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #eeefef;
+    margin-bottom: 1em;
+}
+
+div.content-module-heading {
+    background: none repeat scroll 0 0 #3f4551;
+    cursor: pointer;
+}
+
+    div.content-module-heading h3 {
+        color: white;
+        font-weight: bold;
+        margin: 1.25em;
+        text-transform: uppercase;
+    }
+
+    div.content-module-heading span {
+        color: #969dac;
+        margin: 1.5em;
+        text-transform: uppercase;
+    }
+
+div.content-module-main {
+    padding: 1em;
+}
+
+div#footer {
+    padding: 1.875em 0;
+    text-align: center;
+}
